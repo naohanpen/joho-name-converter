@@ -45,14 +45,14 @@
       var userinputArray = userinput.split('');
       var convertedName = "";
       userinputArray.forEach(function(elem, index) {
-          if( caseBox.includes(elem) === false ){
+          if( elem in caseBox ){
+            convertedName = convertedName + caseBox[ elem ];
+          }else{
             //error
             document.getElementById("output").innerHTML = '<div class="alert alert-warning" role="alert">変換できない文字が含まれています。名前のみをローマ字で入力してください。(全角や大文字で入力しても自動で半角の小文字に変換されます。)</div>';
             convertedName = convertedName + "XX";
             console.log( "error:" + convertedName );
             return convertedName;
-          }else{
-            convertedName = convertedName + caseBox[ elem ];
           }
       });
       console.log( convertedName );
