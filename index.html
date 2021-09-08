@@ -41,15 +41,26 @@
       caseBox[ "x" ] =  "78",
       caseBox[ "y" ] =  "79",
       caseBox[ "z" ] =  "7A";
-      userinput = userinput.toLowerCase();
+      userinput = zenkaku2Hankaku( userinput.toLowerCase() );
       var userinputArray = userinput.split('');
       var convertedName = "";
       userinputArray.forEach(function(elem, index) {
-          convertedName = convertedName + caseBox[ elem ];
+          if( arr.caseBox(elem) === false ){
+            //error
+            document.getElementById("output").innerHTML = '<div class="alert alert-warning" role="alert">変換できない文字が含まれています。名前のみをローマ字で入力してください。(全角や大文字で入力しても自動で半角の小文字に変換されます。)</div>';
+            return "error";
+          }else{
+            convertedName = convertedName + caseBox[ elem ];
+          }
       });
       console.log( convertedName );
       document.getElementById("output").innerHTML = '<div class="alert alert-primary" role="alert">変換結果: ' + convertedName + '</div>';
       return convertedName;
+    }
+    function zenkaku2Hankaku(str) {
+        return str.replace(/[Ａ-Ｚａ-ｚ０-９]/g, function(s) {
+            return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
+        });
     }
   </script>
 </head>
@@ -66,7 +77,8 @@
   <p>時間がなかったので、github 上での公開になります💦</p>
   <div class="mb-3 mt-4">
     <label for="exampleFormControlInput1" class="form-label">名前</label>
-    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="taroh">
+    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="taroh" aria-describedby="inputHelp">
+    <div id="inputHelp" class="form-text">名前のみをローマ字で入力してくださ</div>
   </div>
   <button type="submit" class="btn btn-primary" onclick="convertName();">変換</button>
   <div class="mt-2" id="output"></div>
