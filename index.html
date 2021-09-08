@@ -10,6 +10,48 @@
   crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <script>
+    var outputarea = document.getElementById("output");
+    function convertName() {
+      var userinput = document.getElementById("exampleFormControlInput1").value;
+      var caseBox = new Array();
+      caseBox[ "a" ] = "61",
+      caseBox[ "b" ] =  "62",
+      caseBox[ "c" ] =  "63",
+      caseBox[ "d" ] =  "64",
+      caseBox[ "e" ] =  "65",
+      caseBox[ "f" ] =  "66",
+      caseBox[ "g" ] =  "67",
+      caseBox[ "h" ] =  "68",
+      caseBox[ "i" ] =  "69",
+      caseBox[ "j" ] =  "6A",
+      caseBox[ "k" ] =  "6B",
+      caseBox[ "l" ] =  "6C",
+      caseBox[ "m" ] =  "6D",
+      caseBox[ "n" ] =  "6E",
+      caseBox[ "o" ] =  "6F",
+      caseBox[ "p" ] =  "70",
+      caseBox[ "q" ] =  "71",
+      caseBox[ "r" ] =  "72",
+      caseBox[ "s" ] =  "73",
+      caseBox[ "t" ] =  "74",
+      caseBox[ "u" ] =  "75",
+      caseBox[ "v" ] =  "76",
+      caseBox[ "w" ] =  "77",
+      caseBox[ "x" ] =  "78",
+      caseBox[ "y" ] =  "79",
+      caseBox[ "z" ] =  "7A";
+      userinput = userinput.toLowerCase();
+      var userinputArray = userinput.split('');
+      var convertedName = "";
+      userinputArray.forEach(function(elem, index) {
+          convertedName = convertedName + caseBox[ elem ];
+      });
+      console.log( convertedName );
+      outputarea.innerHTML = '<div class="alert alert-primary" role="alert">A simple primary alert—check it out!</div>';
+      return convertedName;
+    }
+  </script>
 </head>
 <body>
 <main>
@@ -27,6 +69,7 @@
     <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="taroh">
   </div>
   <button type="submit" class="btn btn-primary">変換</button>
+  <div class="mt-2" id="output"></div>
 </main><!-- /.container -->
 </main>
 </body>
