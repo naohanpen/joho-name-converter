@@ -45,6 +45,7 @@
       userinput = zenkaku2Hankaku( userinput.toLowerCase() );
       var userinputArray = userinput.split('');
       var convertedName = "";
+      var canoutput = true;
       userinputArray.forEach(function(elem, index) {
           if( caseBox[ elem ] ){
             convertedName = convertedName + caseBox[ elem ];
@@ -52,12 +53,14 @@
             //error
             document.getElementById("output").innerHTML = '<div class="alert alert-warning" role="alert">変換できない文字が含まれています。名前のみをローマ字で入力してください。(全角や大文字で入力しても自動で半角の小文字に変換されます。)</div>';
             convertedName = convertedName + "XX";
+            canoutput = false;
             console.log( "error:" + convertedName );
-            return true;
           }
       });
       console.log( convertedName );
-      document.getElementById("output").innerHTML = '<div class="alert alert-primary" role="alert">変換結果: ' + convertedName + '</div>';
+      if( canoutput === true ){
+        document.getElementById("output").innerHTML = '<div class="alert alert-primary" role="alert">変換結果: ' + convertedName + '</div>';
+      }
       return convertedName;
     }
     function zenkaku2Hankaku(str) {
